@@ -1,15 +1,13 @@
 #include "roman.h"
 
 int main() {
-	string input;
-	romanType romanNumber;
+	string inputRoman;
 	char keepTrying;
 	do  {
 		cout << "Enter a roman number: ";
-		cin >> input;
-		romanNumber.storeRoman(input);
-		romanNumber.RomanToDecimal();
-		romanNumber.print();
+		cin >> inputRoman;
+		romanType romanNumber(inputRoman);
+		romanNumber.printDecimal();
 		cout << "Try another number (y/n)? ";
 		cin >> keepTrying;
 	} while (keepTrying == 'Y' || keepTrying == 'y');

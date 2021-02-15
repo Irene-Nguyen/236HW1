@@ -1,23 +1,15 @@
 #include "roman.h"
 
-romanType::romanType() {
-	romanNumber = "\0";
-	decimalNumber = 0;
-}
-
 romanType::romanType(string inputRoman) {
-	inputRoman = "\0";
-	decimalNumber = 0;
-}
-
-
-void romanType::storeRoman(string inputRoman) {
 	romanNumber = inputRoman;
+	decimalNumber = 0;
+	RomanToDecimal();
 }
 
 void romanType::RomanToDecimal() {
-	int* decimalArray = nullptr;
-	decimalArray = new (nothrow) int[romanNumber.length()];
+	int * decimalArray = nullptr;
+	decimalArray = new int[romanNumber.length()];
+
 	for (unsigned i = 0; i < romanNumber.length(); i++) {
 		switch (romanNumber[i]) {
 		case'M':
@@ -43,18 +35,20 @@ void romanType::RomanToDecimal() {
 			break;
 		}
 	}
-	for (unsigned i = 0; i < romanNumber.length() - 1; i++) {
+	for (unsigned i = 0; i < (romanNumber.length() - 1); i++) {
 		if (decimalArray[i] >= decimalArray[i + 1]) {
 			decimalNumber += decimalArray[i];
 		}
 		else {
 			decimalNumber -= decimalArray[i];
-		}
-		decimalNumber += decimalArray[romanNumber.length() - 1];
+		}		
 	}
-	delete decimalArray;
+
+	decimalNumber += decimalArray[romanNumber.length() - 1];
+
+	delete []decimalArray;
 }
 
-void romanType::print() {
+void romanType::printDecimal() {
 	cout << "The equivalent of the Roman numeral " << romanNumber << " is " << decimalNumber << endl;
 }
